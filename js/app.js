@@ -42,7 +42,7 @@ function render() {
   
   thirdImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
   console.log(thirdImage);
-  while (firstImage === secondImage  || firstImage === thirdImage || secondImage === thirdImage){
+  while ((firstImage === secondImage) || (firstImage === thirdImage) || (secondImage === thirdImage)){
     render();
   }
   
@@ -133,7 +133,7 @@ function randomNumber(min, max) {
 // function Bus(name) {
 //   this.name = name;
 //   this.imgPath = `/images/${this.name}`;
-
+  
 //   this.clicks = 0;
 //   this.views = 0;
 //   Bus.all.push(this);
@@ -174,7 +174,7 @@ function randomNumber(min, max) {
 
 //   if (clickOnBus < 25) {
 //     if (event.target.id !== 'imagesSection') {
-//       // while (firstImg !== secondImg && firstImg !== thirdImg && secondImg !== thirdImg){
+//        while ((firstImage !== secondImage) && (firstImage !== thirdImage) && (secondImage !== thirdImage)){
 //       if (event.target.id === 'firstImg') {
 //         firstImage.clicks++;
 //       } else if (event.target.id === 'secondImg') {
@@ -210,4 +210,5 @@ function randomNumber(min, max) {
 
 // function randomNumber(min, max) {
 //   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 // }
