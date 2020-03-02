@@ -42,7 +42,9 @@ function render() {
   
   thirdImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
   console.log(thirdImage);
-
+  while (firstImage === secondImage  || firstImage === thirdImage || secondImage === thirdImage){
+    render();
+  }
   
   firstImg.setAttribute('src', firstImage.imgPath);
   firstImg.setAttribute('alt', firstImage.name);
@@ -59,6 +61,9 @@ function render() {
   thirdImg.setAttribute('title', thirdImage.name);
 
 }
+
+
+
 render();
 
 imageSection.addEventListener('click', handleClickOnBus);
