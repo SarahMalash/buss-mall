@@ -27,9 +27,22 @@ function Bus(name) {
   this.clicks = 0;
   this.views = 0;
   Bus.all.push(this);
-  //imgs.all.push (this);
+  
 }
 Bus.all = [];
+function updateProduct() {
+  var products = JSON.stringify(Bus.all);
+  localStorage.setItem('myChart', products);
+}
+function getProduct() {
+  var products1 = localStorage.getItem('myChart');
+  if(products1){
+    Bus.all = JSON.parse(products1);
+    render3();
+    render2();
+ }
+}
+
 
 for (var i = 0; i < imgsArray.length; i++) {
   new Bus(imgsArray[i]);
@@ -87,6 +100,7 @@ render();
 
 imageSection.addEventListener('click', handleClickOnBus);
 var clickOnBus = 0;
+
 function handleClickOnBus(event) {
   if (clickOnBus < 25) {
     if (event.target.id !== 'imagesSection') {
@@ -101,15 +115,20 @@ function handleClickOnBus(event) {
       firstImage.views++;
       secondImage.views++;
       thirdImage.views++;
+      
       render();
     }
   } else {
     console.log('more than 25 clicks');
-    //imageSection.removeEventListener('click', handleclickOnBus);
-    // render2();
+    // imageSection 
+    imageSection.removeEventListener('click', this);
+    //  render2();
+    updateProduct();
+  
     render3();
   }
 }
+
 
 
 function calculateClick() {
@@ -125,9 +144,10 @@ function calculateClick() {
 
 
 
-
 var ctx = document.getElementById('myChart').getContext('2d');
+
 function render3() {
+  
   calculateClick();
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -257,18 +277,116 @@ function render3() {
 
 
 }
+getProduct();
+
+//"use strict";
+
+// // target our order form the html
+// var orderForm = document.getElementById("orderForm");
+// var orders = document.getElementById("orders");
+
+// // constructor function to create a basic drink
+// function Coffee(name, size, milk, isHot, drinkType) {
+//   this.name = name;
+//   this.size = size;
+//   this.isHot = isHot;
+//   this.drinkType = drinkType;
+//   this.milk = milk;
+
+//   // add every drink that gets created into an array
+//   Coffee.drinks.push(this);
+// }
+
+// // set the global array to empty
+// Coffee.drinks = [];
 
 
+// // update drinks
+// function updateDrinks() {
+//   var drinkString = JSON.stringify(Coffee.drinks);
+//   localStorage.setItem('coffeeOrders', drinkString);
+// }
 
+// //get all drinks
+// function getDrinks() {
+//   var drinkString = localStorage.getItem('coffeeOrders');
+//   console.log(drinkString);
+//   if(drinkString) {
+//     Coffee.drinks = JSON.parse(drinkString);
+//     console.log(Coffee.drinks);
+//     renderOrders();
 
-// function render2() {
-//   var ulE1 = document.getElementById('result');
-//   for (var i = 0; i < Bus.all.length; i++) {
-//     var liE1 = document.createElement('li');
-//     liE1.textContent = `${Bus.all[i].name} has ${Bus.all[i].clicks} clicks and ${Bus.all[i].views} views`;
-//     ulE1.appendChild(liE1);
 //   }
 // }
+
+
+// //call get all drinks
+// getDrinks();
+// // Add an event listener to the submit button
+// orderForm.addEventListener("submit", handleSubmit);
+// // event handler function to run everytime the form is submitted
+// function handleSubmit(event) {
+//   event.preventDefault();
+//   console.log(event.target);
+
+//   // get all the values from the form
+//   var drink = event.target;
+//   var name = drink.name.value;
+//   var size = drink.size.value;
+//   var isHot = drink.isHot.value;
+//   var dType = drink.drinkType.value;
+//   var milk = drink.milk.value;
+
+//   new Coffee(name, size, milk, isHot, dType);
+//   //updateDrinks
+//   updateDrinks();
+
+//   renderOrders();
+// }
+
+// function renderOrders() {
+//   // clear all my current uls to prevent duplicate information
+//   orders.textContent = "";
+//   console.log(Coffee.drinks);
+//   // go through the array and output the details of each drink in the array
+//   for (var i = 0; i < Coffee.drinks.length; i++) {
+//     var drinkLI = document.createElement("li");
+//     var infoP = document.createElement("p");
+//     var temp;
+//     if (Coffee.drinks[i].isHot === "on") {
+//       temp = "cold";
+//     } else {
+//       temp = "hot";
+//     }
+//     infoP.textContent = `${Coffee.drinks[i].name} orderd a ${temp} ${Coffee.drinks[i].size} ${Coffee.drinks[i].drinkType} with ${Coffee.drinks[i].milk}`;
+//     drinkLI.appendChild(infoP);
+//     orders.appendChild(drinkLI);
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function render2() {
+  var ulE1 = document.getElementById('result');
+  for (var i = 0; i < Bus.all.length; i++) {
+    var liE1 = document.createElement('li');
+    liE1.textContent = `${Bus.all[i].name} has ${Bus.all[i].clicks} clicks and ${Bus.all[i].views} views`;
+    ulE1.appendChild(liE1);
+  }
+}
 
 
 function randomNumber(min, max) {
