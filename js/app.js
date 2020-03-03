@@ -86,7 +86,7 @@ function handleClickOnBus(event) {
     }
   } else {
     console.log('more than 25 clicks');
-    //imageSection.removeEventListener('click', handleclickOnBus);
+    imageSection.removeEventListener('click', this);
     render2();
   }
 }
