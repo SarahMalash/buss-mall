@@ -1,3 +1,4 @@
+//global variebles
 var imgsArray = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 var imgs = [];
 var clicks1 = [];
@@ -9,17 +10,7 @@ var secondImg = document.querySelector('#secondImg');
 var thirdImg = document.querySelector('#thirdImg');
 var imageSection = document.querySelector('#imagesSection')
 
-// firstImg.src = `/images/${imgsArray[0]}`;
-// firstImg.alt = imgsArray[0];
-// firstImg.title = imgsArray[0];
-
-// secondImg.src = `/images/${imgsArray[1]}`;
-// secondImg.alt = imgsArray[1];
-// secondImg.title = imgsArray[1];
-
-// thirdImg.src = `/images/${imgsArray[2]}`;
-// thirdImg.alt = imgsArray[2];
-// thirdImg.title = imgsArray[2];
+//create a cunstractor
 
 function Bus(name) {
   this.name = name.split('.')[0];
@@ -30,6 +21,7 @@ function Bus(name) {
   
 }
 Bus.all = [];
+//stringfy the array of object
 function updateProduct() {
   var products = JSON.stringify(Bus.all);
   localStorage.setItem('myChart', products);
@@ -51,9 +43,7 @@ for (var i = 0; i < Bus.all.length; i++) {
   imgs[i] = Bus.all[i].name;
 
 }
-//console.log(imgs);
-
-// console.log(Bus.all);
+//get images
 var firstImage, secondImage, thirdImage;
 function render() {
   firstImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
@@ -97,7 +87,7 @@ arrClick[2]=secondImage.imgPath;
 
 }
 render();
-
+//event listener
 imageSection.addEventListener('click', handleClickOnBus);
 var clickOnBus = 0;
 
@@ -120,9 +110,9 @@ function handleClickOnBus(event) {
     }
   } else {
     console.log('more than 25 clicks');
-    // imageSection 
+   
     imageSection.removeEventListener('click', this);
-    //  render2();
+    
     updateProduct();
   
     render3();
@@ -130,7 +120,7 @@ function handleClickOnBus(event) {
 }
 
 
-
+//calculate number of clicks and views
 function calculateClick() {
   for (var i = 0; i < Bus.all.length; i++) {
     img2.push(Bus.all[i].name);
@@ -143,7 +133,7 @@ function calculateClick() {
 
 
 
-
+//create chart
 var ctx = document.getElementById('myChart').getContext('2d');
 
 function render3() {
@@ -279,101 +269,6 @@ function render3() {
 }
 getProduct();
 
-//"use strict";
-
-// // target our order form the html
-// var orderForm = document.getElementById("orderForm");
-// var orders = document.getElementById("orders");
-
-// // constructor function to create a basic drink
-// function Coffee(name, size, milk, isHot, drinkType) {
-//   this.name = name;
-//   this.size = size;
-//   this.isHot = isHot;
-//   this.drinkType = drinkType;
-//   this.milk = milk;
-
-//   // add every drink that gets created into an array
-//   Coffee.drinks.push(this);
-// }
-
-// // set the global array to empty
-// Coffee.drinks = [];
-
-
-// // update drinks
-// function updateDrinks() {
-//   var drinkString = JSON.stringify(Coffee.drinks);
-//   localStorage.setItem('coffeeOrders', drinkString);
-// }
-
-// //get all drinks
-// function getDrinks() {
-//   var drinkString = localStorage.getItem('coffeeOrders');
-//   console.log(drinkString);
-//   if(drinkString) {
-//     Coffee.drinks = JSON.parse(drinkString);
-//     console.log(Coffee.drinks);
-//     renderOrders();
-
-//   }
-// }
-
-
-// //call get all drinks
-// getDrinks();
-// // Add an event listener to the submit button
-// orderForm.addEventListener("submit", handleSubmit);
-// // event handler function to run everytime the form is submitted
-// function handleSubmit(event) {
-//   event.preventDefault();
-//   console.log(event.target);
-
-//   // get all the values from the form
-//   var drink = event.target;
-//   var name = drink.name.value;
-//   var size = drink.size.value;
-//   var isHot = drink.isHot.value;
-//   var dType = drink.drinkType.value;
-//   var milk = drink.milk.value;
-
-//   new Coffee(name, size, milk, isHot, dType);
-//   //updateDrinks
-//   updateDrinks();
-
-//   renderOrders();
-// }
-
-// function renderOrders() {
-//   // clear all my current uls to prevent duplicate information
-//   orders.textContent = "";
-//   console.log(Coffee.drinks);
-//   // go through the array and output the details of each drink in the array
-//   for (var i = 0; i < Coffee.drinks.length; i++) {
-//     var drinkLI = document.createElement("li");
-//     var infoP = document.createElement("p");
-//     var temp;
-//     if (Coffee.drinks[i].isHot === "on") {
-//       temp = "cold";
-//     } else {
-//       temp = "hot";
-//     }
-//     infoP.textContent = `${Coffee.drinks[i].name} orderd a ${temp} ${Coffee.drinks[i].size} ${Coffee.drinks[i].drinkType} with ${Coffee.drinks[i].milk}`;
-//     drinkLI.appendChild(infoP);
-//     orders.appendChild(drinkLI);
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,105 +290,3 @@ function randomNumber(min, max) {
 
 
 
-// var imgsArray = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
-
-// var firstImg = document.querySelector('#firstImg');
-// var secondImg = document.querySelector('#secondImg');
-// var thirdImg = document.querySelector('#thirdImg');
-// var imageSection = document.querySelector('#imagesSection')
-
-
-// firstImg.src = `/images/${imgsArray[0]}`;
-// firstImg.alt = imgsArray[0];
-// firstImg.title = imgsArray[0];
-
-// secondImg.src = `/images/${imgsArray[1]}`;
-// secondImg.alt = imgsArray[1];
-// secondImg.title = imgsArray[1];
-
-// thirdImg.src = `/images/${imgsArray[2]}`;
-// thirdImg.alt = imgsArray[2];
-// thirdImg.title = imgsArray[2];
-
-// function Bus(name) {
-//   this.name = name;
-//   this.imgPath = `/images/${this.name}`;
-
-//   this.clicks = 0;
-//   this.views = 0;
-//   Bus.all.push(this);
-// }
-// Bus.all = [];
-
-// for (i = 0; i < imgsArray.length; i++) {
-//   new Bus(imgsArray[i]);
-// }
-
-// var firstImage, secondImage, thirdImage;
-// function render() {
-//   firstImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
-//   console.log(firstImage);
-//   secondImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
-//   console.log(secondImage);
-//   thirdImage = Bus.all[randomNumber(0, Bus.all.length - 1)];
-//   console.log(thirdImage);
-
-//   firstImg.setAttribute('src', firstImage.imgPath);
-//   firstImg.setAttribute('alt', firstImage.name);
-//   firstImg.setAttribute('title', firstImage.name);
-
-//   secondImg .setAttribute('src', secondImage.imgPath);
-//   secondImg.setAttribute('alt', secondImage.name);
-//   secondImg.setAttribute('title', secondImage.name);
-
-//   thirdImg .setAttribute('src', thirdImage.imgPath);
-//   thirdImg.setAttribute('alt', thirdImage.name);
-//   thirdImg.setAttribute('title', thirdImage.name);
-// }
-// render();
-
-// imageSection.addEventListener('click', handleclickOnBus);
-// var clickOnBus = 0;
-
-// function handleclickOnBus(event) {
-
-//   if (clickOnBus < 25) {
-//     if (event.target.id !== 'imagesSection') {
-//        while ((firstImage !== secondImage) && (firstImage !== thirdImage) && (secondImage !== thirdImage)){
-//       if (event.target.id === 'firstImg') {
-//         firstImage.clicks++;
-//       } else if (event.target.id === 'secondImg') {
-//         secondImg.clicks++;
-//       } else if (event.target.id === 'thirdImg') {
-//         thirdImage.clicks++;
-//       }
-//       clickOnBus++;
-//       firstImage.views++;
-//       secondImage.views++;
-//       thirdImage.views++;
-//       render();
-//     }
-//   }
-//   else {
-//     console.log('more than 5 clicks');
-//     //imageSection.removeEventListener('click', handleclickOnBus);
-//     render2();
-//   }
-// }
-// //}
-
-
-// function render2() {
-//   var ulE1 = document.getElementById('result');
-//   for (var i = 0; i < Bus.all.length; i++) {
-//     var liE1 = document.createElement('li');
-//     liE1.textContent = `${Bus.all[i].name} has ${Bus.all[i].clicks} clicks and ${Bus.all[i].views} views`;
-//     ulE1.appendChild(liE1);
-//   }
-// }
-
-
-// function randomNumber(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-// }
